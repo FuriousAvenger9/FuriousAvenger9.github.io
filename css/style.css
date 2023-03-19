@@ -1,0 +1,19 @@
+header{
+    background-color: #C52330;
+    height: 100px;
+    padding: 10px;
+}
+body{
+    color: rgb(79, 79, 79);
+}
+footer{
+    height: 10%;
+}
+header h1{
+    color:white;
+    text-align: center;
+}
+
+th,td{
+    padding:10px;
+}
