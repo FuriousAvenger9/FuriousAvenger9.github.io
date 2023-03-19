@@ -225,12 +225,28 @@ window.addEventListener("load", populateClasses);
 let alearClassBox =document.getElementById("classAlear");
 alearClassBox.addEventListener("change", calculateStats);
 
+
+//calculates individual growth rate
 function calculateStats()
 {
-    //select all the table data in the stats area 
-    let stats = document.querySelectorAll(".alearStats")
+    //get the name of what sent this 
+    let name = this.name;
 
-    let characterIndex = findName(unitStats, "Alear")
+    //all names should be class then the name ex: classAlear 
+    //remove class from the begining of the string 
+    name = name.slice(5);
+    //make it lowercase
+    name = name.toLowerCase();
+
+    
+
+    //select all the table data in the stats area 
+    let stats = document.querySelectorAll("."+name+"Stats");
+
+
+    //find the index of the character in the base unitStats list
+    //also capitalizing first letter in name cause thats how it is in the list
+    let characterIndex = findName(unitStats, name.charAt(0).toUpperCase() + name.slice(1));
     
     //get the original character stats to modify 
     let baseStats =  unitStats[characterIndex];
@@ -257,7 +273,7 @@ function calculateStats()
     
 }
 
-//function to find the index of character names 
+//finds the index of character names 
 function findName(arr, name)
 {
     for(let i=0; i<arr.length; i++)
@@ -269,6 +285,7 @@ function findName(arr, name)
     }
 }
 
+//populats all class options in class select boxes 
 function populateCharacterForm(id)
 {
     //get the table to append to
@@ -302,7 +319,7 @@ function populateCharacterForm(id)
     table.appendChild(form);
 }
 
-//function to put all classes inside fourm
+//function to put all classes inside form
 function populateClasses()
 {
    let classBoxes = document.querySelectorAll("select.classes");
