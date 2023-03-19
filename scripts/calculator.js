@@ -133,7 +133,7 @@ let unitStats=
     ["Louis", 75,40,0,25,25,50,20,25,15],
     ["Yunaka", 50,35,25,40,45,15,45,25,5],
     ["Alcryst", 65,30,10,40,45,30,20,15,10],
-    ["Citrinne", 45,10,40,,25,30,20,40,25,5],
+    ["Citrinne", 45,10,40,25,30,20,40,25,5],
     ["Lapis", 55,25,20,35,55,35,30,25,5],
     ["Diamant", 75,30,15,20,40,40,25,20,15],
     ["Amber", 65,45,0,25,30,35,5,35,15],
@@ -219,11 +219,20 @@ let classModifiers=
     ["Enchanter",5,15,15,15,10,5,5,15,5]
 ];
 
-window.addEventListener("load", populateClasses);
-//window.addEventListener("load", populateCharacterForm("etie"));
+//populate all class options for charaters
+window.addEventListener("load", function(){
+    populateClasses();
+    addEventCalculateStats();
+    setCharacterStats();
 
+});
+
+//window.addEventListener("load", populateCharacterForm("etie"));
+/**
 let alearClassBox =document.getElementById("classAlear");
 alearClassBox.addEventListener("change", calculateStats);
+document.getElementById("classVander").addEventListener("change", calculateStats);
+/**/
 
 
 //calculates individual growth rate
@@ -238,8 +247,6 @@ function calculateStats()
     //make it lowercase
     name = name.toLowerCase();
 
-    
-
     //select all the table data in the stats area 
     let stats = document.querySelectorAll("."+name+"Stats");
 
@@ -252,7 +259,7 @@ function calculateStats()
     let baseStats =  unitStats[characterIndex];
 
     //get the selected class index
-    let classIndex = alearClassBox.selectedIndex;
+    let classIndex = this.selectedIndex;
 
     //get our class from the 2d array above 
     let newClass = classModifiers[classIndex-1];
@@ -338,3 +345,49 @@ function populateClasses()
    }
 }
 
+function setStats(classBox)
+{
+    //get the name of what sent this 
+    let name = classBox.name;
+
+    //all names should be class then the name ex: classAlear 
+    //remove class from the begining of the string 
+    name = name.slice(5);
+    //make it lowercase
+    name = name.toLowerCase();
+
+    //select all the table data in the stats area 
+    let stats = document.querySelectorAll("."+name+"Stats");
+
+
+    //find the index of the character in the base unitStats list
+    //also capitalizing first letter in name cause thats how it is in the list
+    let characterIndex = findName(unitStats, name.charAt(0).toUpperCase() + name.slice(1));
+    
+    //get the original character stats to modify 
+    let baseStats =  unitStats[characterIndex];
+
+    for(let i=0; i<stats.length; i++)
+    {
+        stats[i].innerHTML= baseStats[i+1];
+    }
+    
+}
+//Add event listener to set base stats of all characters
+function setCharacterStats()
+{
+    let classBoxes = document.querySelectorAll("select.classes");
+    for(let i =0; i<classBoxes.length; i++)
+    {
+        setStats(classBoxes[i]);
+    }
+}
+//Adds event listener for calculate stats function to each character 
+function  addEventCalculateStats()
+{
+    let classBoxes = document.querySelectorAll("select.classes");
+    for(let i =0; i<classBoxes.length; i++)
+    {
+        classBoxes[i].addEventListener("change", calculateStats);
+    }
+}
