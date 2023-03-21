@@ -1,23 +1,5 @@
 "use-strict"
 
-//create character class 
-/**class Character{
-    constructor(name, hp, str, mag, dex, spd, def, res, lck, bld)
-    {
-        this.name = name;
-        this.hp = hp;
-        this.str = str;
-        this.mag = mag;
-        this.dex = dex; 
-        this.spd = spd;
-        this.def = def;
-        this.res = res; 
-        this.lck = lck;
-        this.bld = bld;
-    }
-}
-/**/ 
-
 //A list of Classes
 let classes = 
 [
@@ -117,6 +99,8 @@ let units =
     "Anna",
     "Jean"
 ];
+
+
 //a 2d array of all unit base growth rates 
 //index 0 is unit name
 let unitStats= 
@@ -228,11 +212,7 @@ window.addEventListener("load", function(){
 });
 
 //window.addEventListener("load", populateCharacterForm("etie"));
-/**
-let alearClassBox =document.getElementById("classAlear");
-alearClassBox.addEventListener("change", calculateStats);
-document.getElementById("classVander").addEventListener("change", calculateStats);
-/**/
+
 
 
 //calculates individual growth rate
