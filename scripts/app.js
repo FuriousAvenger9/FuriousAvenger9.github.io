@@ -194,24 +194,7 @@ function populateCharacterForm(id)
     table.appendChild(form);
 }
 
-//function to put all classes inside form
-function populateClasses()
-{
-   let classBoxes = document.querySelectorAll("select.classes");
 
-   for(let i =0; i<classes.length; i++)
-   {
-        //for each classes select we need to create and add a node for each class
-        for(let n=0; n<classBoxes.length; n++)
-        {
-            let classOption = document.createElement("option");
-            classOption.value = classes[i];
-            classOption.innerHTML = classes[i];
-            classBoxes[n].appendChild(classOption);
-        }
-        
-   }
-}
 
 function setStats(classBox)
 {
@@ -261,7 +244,54 @@ function  addEventCalculateStats()
 }
 */
 
+function calculateStats()
+{
+    //get the name of what sent this 
+    let name = this.name;
 
+    document.querySelector("#"+name+"str").innerText = ;
+
+
+    //find the index of the character in the base unitStats list
+    //also capitalizing first letter in name cause thats how it is in the list
+    let characterIndex = findName(unitStats, name.charAt(0).toUpperCase() + name.slice(1));
+    
+    //get the original character stats to modify 
+    let baseStats =  unitStats[characterIndex];
+
+    //get the selected class index
+    let classIndex = this.selectedIndex;
+
+    //get our class from the 2d array above 
+    let newClass = classModifiers[classIndex-1];
+    
+    //change all the stats to their new value
+    if(classIndex!=0)
+    {
+        for(let i=0; i<stats.length; i++)
+        {
+            stats[i].innerHTML= baseStats[i+1] +newClass[i+1];
+        }
+    }else{
+        for(let i=0; i<stats.length; i++)
+        {
+            stats[i].innerHTML= baseStats[i+1];
+        }
+    }
+    
+}
+
+//function to put all classes inside form
+function populateClasses(selectBox)
+{
+   for(let i =0; i<classes.length; i++)
+   {
+        let classOption = document.createElement("option");
+        classOption.value = classes[i];
+        classOption.innerText = classes[i];
+        selectBox.appendChild(classOption);
+   }
+}
 
 const tbody = document.querySelector("#mainTable tbody")
 Object.entries(stats).forEach(([ characterName, baseStats ]) => {
@@ -272,34 +302,91 @@ Object.entries(stats).forEach(([ characterName, baseStats ]) => {
     tr.appendChild(nameTD)
     nameTD.innerText = characterName;
 
-    // temp spacers
-    //create select 
-    
-    const tdClassSelect = document.createElement("td");
+
+    //create class select 
     const classSelect = document.createElement("select");
     classSelect.name = characterName; 
     classSelect.id = characterName; 
     classSelect.value = "Select Class";
+    populateClasses(classSelect);
+    classSelect.addEventListener("change", calculateStats);
+
+    //create td to append to
+    const tdClassSelect = document.createElement("td");
     tdClassSelect.appendChild(classSelect);
 
-    const tdDisplaySelect = document.createElement("td");
+    //create display select
     const displaySelect = document.createElement("select");
     displaySelect.name = "display"+characterName; 
     classSelect.id = "display"+characterName; 
     classSelect.value = "indivdual growth rates";
+    //create td to append to
+    const tdDisplaySelect = document.createElement("td");
     tdDisplaySelect.appendChild(displaySelect);
     
-
-
+    //add these select options to the table
     tr.appendChild(tdClassSelect);
     tr.appendChild(tdDisplaySelect);
     
-    
-    
+    //add the base stats
+    //hp
     const hpTD = document.createElement("td");
     hpTD.innerText = baseStats.hp;
+    hpTD.id = characterName+"hp";
     tr.appendChild(hpTD);
 
+    //str
+    const strTD = document.createElement("td");
+    strTD.innerText = baseStats.str;
+    strTD.id = characterName+"str";
+    tr.appendChild(strTD);
+
+    //mag
+    const magTD = document.createElement("td");
+    magTD.innerText = baseStats.mag;
+    magTD.id = characterName+"mag";
+    tr.appendChild(magTD);
+
+    //dex
+    const dexTD = document.createElement("td");
+    dexTD.innerText = baseStats.dex;
+    dexTD.id = characterName+"dex";
+    tr.appendChild(dexTD);
+
+    //spd
+    const spdTD = document.createElement("td");
+    spdTD.innerText = baseStats.spd;
+    spdTD.id =characterName+ "spd";
+    tr.appendChild(spdTD);
+
+    //def
+    const defTD = document.createElement("td");
+    defTD.innerText = baseStats.def;
+    defTD.id = characterName+"def";
+    tr.appendChild(defTD);
+
+    //res 
+    const resTD = document.createElement("td");
+    resTD.innerText = baseStats.res;
+    resTD.id = characterName+"res";
+    tr.appendChild(resTD);
+
+    //lck
+    const lckTD = document.createElement("td");
+    lckTD.innerText = baseStats.lck;
+    lckTD.id = characterName+"lck";
+    tr.appendChild(lckTD);
+
+    //bld 
+    const bldTD = document.createElement("td");
+    bldTD.innerText = baseStats.bld;
+    bldTD.id = characterName+"bld";
+    tr.appendChild(bldTD);
+
+
+
+    //append the row to the tbody
     tbody.appendChild(tr)
+    
 })
 
