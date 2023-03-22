@@ -1,7 +1,7 @@
-"use-strict"
+"use-strict";
 
 import { classes } from "./data/character-classes.js";
-import { stats } from "./data/base-stats.js"
+import { stats } from "./data/base-stats.js";
 
 //create character class 
 /**class Character{
@@ -273,9 +273,28 @@ Object.entries(stats).forEach(([ characterName, baseStats ]) => {
     nameTD.innerText = characterName;
 
     // temp spacers
-    tr.appendChild(document.createElement("td"));
-    tr.appendChild(document.createElement("td"));
+    //create select 
+    
+    const tdClassSelect = document.createElement("td");
+    const classSelect = document.createElement("select");
+    classSelect.name = characterName; 
+    classSelect.id = characterName; 
+    classSelect.value = "Select Class";
+    tdClassSelect.appendChild(classSelect);
 
+    const tdDisplaySelect = document.createElement("td");
+    const displaySelect = document.createElement("select");
+    displaySelect.name = "display"+characterName; 
+    classSelect.id = "display"+characterName; 
+    classSelect.value = "indivdual growth rates";
+    tdDisplaySelect.appendChild(displaySelect);
+    
+
+
+    tr.appendChild(tdClassSelect);
+    tr.appendChild(tdDisplaySelect);
+    
+    
     
     const hpTD = document.createElement("td");
     hpTD.innerText = baseStats.hp;
