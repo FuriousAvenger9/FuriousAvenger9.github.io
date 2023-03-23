@@ -245,20 +245,28 @@ function  addEventCalculateStats()
 }
 */
 
-//function to update stats
-function calculateStats()
+//calculates effective character growths (indidual growth + class modifiers)
+function calcEffectiveGrowth(name)
 {
    
     //get the name of what sent this 
-    const name = this.name;
-    const selectBox = document.querySelector('#display'+name);
+    //const name = this.name;
+    //get select box calling function
+    const selectBox = document.querySelector('#'+name);
+
+    //get associated display box
+    let displayBox = document.querySelector("#display"+name);
+    //get index of display box 
+    let displayIndex = displayBox.selectedIndex;
+    
+
 
     //get the original character stats to modify 
     const baseStats =  stats[name];
 
     
     //get the selected class index
-    const classIndex = this.selectedIndex;
+    const classIndex = selectBox.selectedIndex;
     //get the name of the class 
     const className = selectBox[classIndex].value;
     //now get the list of modifiers 
@@ -291,6 +299,20 @@ function calculateStats()
 
     
 }
+function displayBaseStats(name)
+{
+    const baseStats =  stats[name];
+
+    document.querySelector("#"+name+"hp").innerText = baseStats.hp
+    document.querySelector("#"+name+"str").innerText = baseStats.str;
+    document.querySelector("#"+name+"mag").innerText = baseStats.mag;
+    document.querySelector("#"+name+"dex").innerText = baseStats.dex;
+    document.querySelector("#"+name+"spd").innerText = baseStats.spd;
+    document.querySelector("#"+name+"def").innerText = baseStats.def;
+    document.querySelector("#"+name+"res").innerText = baseStats.res;
+    document.querySelector("#"+name+"lck").innerText = baseStats.lck;
+    document.querySelector("#"+name+"bld").innerText = baseStats.bld;
+}
 
 //function to put all classes inside form
 function populateClasses(selectBox)
@@ -302,6 +324,51 @@ function populateClasses(selectBox)
         classOption.innerText = classes[i];
         selectBox.appendChild(classOption);
    }
+}
+//fucntion to add options to display select 
+function populateDisplay(selectBox)
+{
+    let effective = document.createElement("option");
+    effective.value = "Effective Growth Rates";
+    effective.innerText = "Effective Growth Rates";
+    selectBox.appendChild(effective);
+
+    let indivdual = document.createElement("option");
+    indivdual.value = "Individual Growth Rate";
+    indivdual.innerText = "Individual Growth Rate";
+    selectBox.appendChild(indivdual);
+}
+
+//function to decide what function to call depending on value of display box 
+function decideCalculation()
+{
+    //get name of select box calling this 
+    let name = this.name;
+    //if the display select called this message we need to modify name so we only pass the characters name
+    if(name.includes("display"))
+    {
+        name= name.slice(7);
+    }
+
+    //get associated display box
+    let displayBox = document.querySelector("#display"+name);
+
+    //get index of display box 
+    let displayIndex = displayBox.selectedIndex;
+
+    switch(displayIndex)
+    {
+        case 0: 
+            calcEffectiveGrowth(name);
+            break;
+        case 1:
+            displayBaseStats(name);
+            break;
+        case 2: 
+            displayMaxStats(name);
+            break;
+    }
+        
 }
 
 const tbody = document.querySelector("#mainTable tbody")
@@ -320,7 +387,7 @@ Object.entries(stats).forEach(([ characterName, baseStats ]) => {
     classSelect.id = characterName; 
     classSelect.value = "Select Class";
     populateClasses(classSelect);
-    classSelect.addEventListener("change", calculateStats);
+    classSelect.addEventListener("change", decideCalculation);
 
     //create td to append to
     const tdClassSelect = document.createElement("td");
@@ -329,8 +396,10 @@ Object.entries(stats).forEach(([ characterName, baseStats ]) => {
     //create display select
     const displaySelect = document.createElement("select");
     displaySelect.name = "display"+characterName; 
-    classSelect.id = "display"+characterName; 
-    classSelect.value = "indivdual growth rates";
+    displaySelect.id = "display"+characterName; 
+    displaySelect.value = "indivdual growth rates";
+    populateDisplay(displaySelect);
+    displaySelect.addEventListener("change", decideCalculation);
     //create td to append to
     const tdDisplaySelect = document.createElement("td");
     tdDisplaySelect.appendChild(displaySelect);
