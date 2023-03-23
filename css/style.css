@@ -1,11 +1,19 @@
 header{
+    margin-top: 50px;
     background-color: #C52330;
     height: 100px;
     padding: 10px;
 }
 body{
-    color: rgb(79, 79, 79);
+    background-color: #d3d3d3;
 }
+table{
+    background-color: white;
+    border-style:solid;
+    border-color: #C52330;
+    border-width: 20px;
+}
+
 footer{
     height: 10%;
 }
