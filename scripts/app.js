@@ -2,6 +2,7 @@
 
 import { classes } from "./data/character-classes.js";
 import { stats } from "./data/base-stats.js";
+import { classModifiers } from "./data/classModifiers.js";
 
 //create character class 
 /**class Character{
@@ -244,40 +245,50 @@ function  addEventCalculateStats()
 }
 */
 
+//function to update stats
 function calculateStats()
 {
+   
     //get the name of what sent this 
-    let name = this.name;
+    const name = this.name;
+    const selectBox = document.querySelector('#display'+name);
 
-    document.querySelector("#"+name+"str").innerText = ;
-
-
-    //find the index of the character in the base unitStats list
-    //also capitalizing first letter in name cause thats how it is in the list
-    let characterIndex = findName(unitStats, name.charAt(0).toUpperCase() + name.slice(1));
-    
     //get the original character stats to modify 
-    let baseStats =  unitStats[characterIndex];
+    const baseStats =  stats[name];
 
-    //get the selected class index
-    let classIndex = this.selectedIndex;
-
-    //get our class from the 2d array above 
-    let newClass = classModifiers[classIndex-1];
     
-    //change all the stats to their new value
-    if(classIndex!=0)
+    //get the selected class index
+    const classIndex = this.selectedIndex;
+    //get the name of the class 
+    const className = selectBox[classIndex].value;
+    //now get the list of modifiers 
+    const newClass = classModifiers[className];
+    
+    //apply the stats 
+    if(classIndex !=0)
     {
-        for(let i=0; i<stats.length; i++)
-        {
-            stats[i].innerHTML= baseStats[i+1] +newClass[i+1];
-        }
+        document.querySelector("#"+name+"hp").innerText = baseStats.hp+ newClass.hp;
+        document.querySelector("#"+name+"str").innerText = baseStats.str+ newClass.str;
+        document.querySelector("#"+name+"mag").innerText = baseStats.mag+ newClass.mag;
+        document.querySelector("#"+name+"dex").innerText = baseStats.dex+ newClass.dex;
+        document.querySelector("#"+name+"spd").innerText = baseStats.spd+ newClass.spd;
+        document.querySelector("#"+name+"def").innerText = baseStats.def+ newClass.def;
+        document.querySelector("#"+name+"res").innerText = baseStats.res+ newClass.res;
+        document.querySelector("#"+name+"lck").innerText = baseStats.lck+ newClass.lck;
+        document.querySelector("#"+name+"bld").innerText = baseStats.bld+ newClass.bld;
     }else{
-        for(let i=0; i<stats.length; i++)
-        {
-            stats[i].innerHTML= baseStats[i+1];
-        }
+        document.querySelector("#"+name+"hp").innerText = baseStats.hp
+        document.querySelector("#"+name+"str").innerText = baseStats.str;
+        document.querySelector("#"+name+"mag").innerText = baseStats.mag;
+        document.querySelector("#"+name+"dex").innerText = baseStats.dex;
+        document.querySelector("#"+name+"spd").innerText = baseStats.spd;
+        document.querySelector("#"+name+"def").innerText = baseStats.def;
+        document.querySelector("#"+name+"res").innerText = baseStats.res;
+        document.querySelector("#"+name+"lck").innerText = baseStats.lck;
+        document.querySelector("#"+name+"bld").innerText = baseStats.bld;
     }
+    
+
     
 }
 
