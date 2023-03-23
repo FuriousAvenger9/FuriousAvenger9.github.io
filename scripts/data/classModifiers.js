@@ -43,7 +43,7 @@ const classModifiers=
     "Wolf Knight":{hp:10, str: 5, mag:0, dex: 15, spd: 20, def: 5, res: 20, lck: 20,bld: 0 },
     "Mage":{hp:0, str: 0, mag:25, dex: 5, spd: 0, def: 0, res: 25, lck: 5,bld: 0 },
     "Sage":{hp:0, str: 0, mag:30, dex: 5, spd: 0, def: 0, res: 30, lck: 15,bld: 0 },
-    "Mage knight":{hp:5, str: 5, mag:25, dex: 0, spd: 5, def: 10, res: 25, lck: 5,bld: 0 },
+    "Mage Knight":{hp:5, str: 5, mag:25, dex: 0, spd: 5, def: 10, res: 25, lck: 5,bld: 0 },
     "Martial Monk":{hp:0, str: 10, mag:25, dex: 0, spd: 0, def: 10, res: 20, lck: 10,bld: 0 },
     "Martial Master":{hp:5, str: 10, mag:20, dex: 0, spd: 0, def: 15, res: 25, lck: 10,bld: 0 },
     "High Priest":{hp:0, str: 0, mag:25, dex: 0, spd: 5, def: 0, res: 30, lck: 30,bld: 0 },
@@ -52,7 +52,7 @@ const classModifiers=
     "Axe Flier":{hp:5, str: 10, mag:5, dex: 10, spd: 10, def: 0, res: 10, lck: 10,bld: 0 },
     "Griffin Knight":{hp:0, str: 10, mag:15, dex: 15, spd: 20, def: 0, res: 15, lck: 15,bld: 0 },
     "Wyvern Knight":{hp:20, str: 20, mag:0, dex: 10, spd: 5, def: 20, res: 5, lck: 5,bld: 5 },
-    "Theif":{hp:5, str: 10, mag:0, dex: 5, spd: 15, def: 10, res: 20, lck: 20,bld: 0 },
+    "Thief":{hp:5, str: 10, mag:0, dex: 5, spd: 15, def: 10, res: 20, lck: 20,bld: 0 },
     "Dancer":{hp:5, str: 10, mag:0, dex: 5, spd: 15, def: 10, res: 20, lck: 20,bld: 0 },
     "Enchanter":{hp:5, str: 15, mag:15, dex: 15, spd: 10, def: 5, res: 5, lck: 15,bld: 5 }
 };

@@ -1,7 +1,7 @@
 "use-strict";
 
 import { classes } from "./data/character-classes.js";
-import { stats } from "./data/base-stats.js";
+import { stats } from "./data/individual-growths.js";
 import { classModifiers } from "./data/classModifiers.js";
 
 //create character class 
