@@ -3,6 +3,7 @@
 import { classes } from "./data/character-classes.js";
 import { stats } from "./data/individual-growths.js";
 import { classModifiers } from "./data/classModifiers.js";
+import { classMaxStats } from "./data/classMaxStats.js";
 
 //create character class 
 /**class Character{
