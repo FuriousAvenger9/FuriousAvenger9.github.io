@@ -4,6 +4,7 @@ import { classes } from "./data/character-classes.js";
 import { stats } from "./data/individual-growths.js";
 import { classModifiers } from "./data/classModifiers.js";
 import { classMaxStats } from "./data/classMaxStats.js";
+import { characterMaxModifiers } from "./data/characterMaxModifiers.js";
 
 //create character class 
 /**class Character{
@@ -314,6 +315,30 @@ function displayBaseStats(name)
     document.querySelector("#"+name+"lck").innerText = baseStats.lck;
     document.querySelector("#"+name+"bld").innerText = baseStats.bld;
 }
+function displayMaxStats(name)
+{
+    const maxModifiers = characterMaxModifiers[name];
+
+    //get class name 
+    let classBox = document.querySelector('#'+name);
+
+    let classname = classBox[classBox.selectedIndex].value;
+
+    //get the class max stats 
+    const classMax = classMaxStats[classname];
+    
+
+    document.querySelector("#"+name+"hp").innerText =classMax.hp;
+    document.querySelector("#"+name+"str").innerText = maxModifiers.str+classMax.str;
+    document.querySelector("#"+name+"mag").innerText = maxModifiers.mag+classMax.mag;
+    document.querySelector("#"+name+"dex").innerText = maxModifiers.dex+classMax.dex;
+    document.querySelector("#"+name+"spd").innerText = maxModifiers.spd+classMax.spd;
+    document.querySelector("#"+name+"def").innerText = maxModifiers.def+classMax.def;
+    document.querySelector("#"+name+"res").innerText = maxModifiers.res+classMax.res;
+    document.querySelector("#"+name+"lck").innerText = maxModifiers.lck+classMax.lck;
+    document.querySelector("#"+name+"bld").innerText = classMax.bld;
+
+}
 
 //function to put all classes inside form
 function populateClasses(selectBox)
@@ -329,15 +354,22 @@ function populateClasses(selectBox)
 //fucntion to add options to display select 
 function populateDisplay(selectBox)
 {
-    let effective = document.createElement("option");
+    const effective = document.createElement("option");
     effective.value = "Effective Growth Rates";
     effective.innerText = "Effective Growth Rates";
     selectBox.appendChild(effective);
 
-    let indivdual = document.createElement("option");
+    const indivdual = document.createElement("option");
     indivdual.value = "Individual Growth Rate";
     indivdual.innerText = "Individual Growth Rate";
     selectBox.appendChild(indivdual);
+
+    const max = document.createElement("option");
+    max.value = "Max Growth Rates";
+    max.innerText = "Max Growth Rate";
+    selectBox.appendChild(max);
+
+
 }
 
 //function to decide what function to call depending on value of display box 
