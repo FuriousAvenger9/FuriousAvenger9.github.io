@@ -1,7 +1,6 @@
 
 const classes = 
 [
-    "Select Class",
     "Dragon Child", 
     "Divine Dragon",
     "Fell Child",
@@ -20,6 +19,10 @@ const classes =
     "Picket",
     "Sentinel",
     "Melusine",
+    "Dancer",
+    "Enchanter",
+    //start of generic classes 
+    "Select Class",
     "Sword Fighter",
     "Swordmaster",
     "Hero",
@@ -53,9 +56,7 @@ const classes =
     "Axe Flier",
     "Griffin Knight",
     "Wyvern Knight",
-    "Thief",
-    "Dancer",
-    "Enchanter"
+    "Thief"
 ]
 
 export { classes } 
