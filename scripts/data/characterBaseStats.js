@@ -1,0 +1,42 @@
+const baseStats =
+{
+    "Alear":{	lvl:1,	class:"Dragon Child",	hp:22,	str:6,  mag:0,	dex:5,	spd:7,	def:5,	res:3,	lck:5,	bld:4,	mov:4},
+    "Vander":{	lvl:"1*",	class:"Paladin",	    hp:40,	str:11,	mag:5,	dex:10,	spd:8,	def:10,	res:8,	lck:6,	bld:8,	mov:6},
+    "Clanne":{	lvl:1,	class:"Mage",	        hp:19,	str:1,  mag:8,	dex:11,	spd:9,	def:4,	res:7,	lck:4,	bld:4,	mov:4},
+    "Framme":{	lvl:1,	class:"Martial Monk",	hp:18,	str:3,  mag:5,	dex:8,	spd:7,	def:4,	res:8,	lck:5,	bld:3,	mov:4},
+    "Alfred":{	lvl:5,	class:"Noble",      	hp:27,	str:9,  mag:2,	dex:10,	spd:6,	def:8,	res:5,	lck:8,	bld:6,	mov:5},
+    "Etie":{	lvl:4,	class:"Archer",     	hp:21,	str:10,	mag:0,	dex:11,	spd:6,	def:3,	res:2,	lck:8,	bld:4,	mov:4},
+    "Boucheron":{	lvl:4,	class:"Axe Fighter",hp:29,	str:10,	mag:0,	dex:8,	spd:7,	def:6,	res:3,	lck:5,	bld:9,	mov:4},
+    "Celine":{	lvl:5,	class:"Noble",      	hp:22,	str:7,  mag:9,	dex:9,	spd:10,	def:5,	res:7,	lck:11,	bld:4,	mov:4},
+    "Chloe":{	lvl:6,	class:"Lance Flier",	hp:26,	str:8,  mag:4,	dex:13,	spd:13,	def:5,	res:9,	lck:10,	bld:5,	mov:5},
+    "Louis":{	lvl:6,	class:"Lance Armor",	hp:30,	str:13,	mag:0,	dex:11,	spd:3,	def:16,	res:1,	lck:4,	bld:8,	mov:4},
+    "Yunaka":{	lvl:6,	class:"Thief",      	hp:25,	str:8,  mag:5,	dex:14,	spd:12,	def:9,	res:7,	lck:8,	bld:5,	mov:5},
+    "Alcryst":{	lvl:10, class:"Lord",       	hp:28,	str:11,	mag:2,	dex:17,	spd:12,	def:8,	res:5,	lck:8,	bld:6,	mov:4},
+    "Citrinne":{	lvl:10, class:"Mage",   	hp:24,	str:2,  mag:15,	dex:13,	spd:10,	def:3,	res:12,	lck:10,	bld:4,	mov:4},
+    "Lapis":{	lvl:10,	class:"Sword Fighter",	hp:26,	str:11,	mag:2,	dex:12,	spd:14,	def:7,	res:6,	lck:7,	bld:5,	mov:4},
+    "Diamant":{	lvl:11,	class:"Lord",       	hp:32,	str:13,	mag:3,	dex:13,	spd:13,	def:10,	res:6,	lck:10,	bld:9,	mov:4},
+    "Amber":{	lvl:11,	class:"Lance Cavalier",	hp:31,	str:15,	mag:2,	dex:13,	spd:11,	def:9,	res:3,	lck:9,	bld:8,	mov:5},
+    "Jade":{	lvl:12,	class:"Axe Armor",  	hp:33,	str:14,	mag:4,	dex:14,	spd:5,	def:18,	res:6,	lck:5,	bld:8,	mov:4},
+    "Ivy":{	lvl:17,	class:"Wing Tamer",     	hp:32,	str:7,  mag:17,	dex:15,	spd:13,	def:12,	res:15,	lck:4,	bld:7,	mov:5},
+    "Kagetsu":{	lvl:"1*",class:"Swordmaster",  	hp:35,	str:17,	mag:5,	dex:22,	spd:22,	def:14,	res:10,	lck:17,	bld:9,	mov:5},
+    "Zelkov":{	lvl:17,class:"Thief",       	hp:35,	str:15,	mag:3,	dex:19,	spd:19,	def:14,	res:5,	lck:7,	bld:9,	mov:5},
+    "Fogado":{	lvl:17,class:"Sentinel",    	hp:33,	str:12,	mag:7,	dex:17,	spd:18,	def:10,	res:11,	lck:8,	bld:8,	mov:5},
+    "Pandreo":{	lvl:"1*",class:"High Priest",  	hp:34,	str:7,  mag:16,	dex:18,	spd:17,	def:8,	res:22,	lck:14,	bld:8,	mov:5},
+    "Bunet":{	lvl:"1*",class:"Great Knight", 	hp:41,	str:15,	mag:5,	dex:15,	spd:9,	def:20,	res:8,	lck:13,	bld:11,	mov:6},
+    "Timerra":{	lvl:18,class:"Sentinel",    	hp:35,	str:14,	mag:6,	dex:17,	spd:18,	def:16,	res:8,	lck:10,	bld:5,	mov:4},
+    "Panette":{	lvl:"1*",class:"Berserker",    	hp:46,	str:25,	mag:3,	dex:19,	spd:13,	def:11,	res:7,	lck:11,	bld:11,	mov:5},
+    "Merrin":{	lvl:"1*",class:"Wolf Knight",  	hp:36,	str:15,	mag:10,	dex:21,	spd:21,	def:12,	res:12,	lck:14,	bld:9,	mov:6},
+    "Hortensia":{	lvl:19,	class:"Wing Tamer",	hp:27,	str:5,  mag:12,	dex:21,	spd:19,	def:6,	res:23,	lck:17,	bld:5,	mov:5},
+    "Seadall":{	lvl:15,	class:"Dancer",     	hp:33,	str:12,	mag:4,	dex:15,	spd:16,	def:10,	res:10,	lck:11,	bld:8,	mov:5},
+    "Rosado":{	lvl:"3*",	class:"Wyvern Knight",	hp:44,	str:16,	mag:7,	dex:19,	spd:21,	def:15,	res:11,	lck:8,	bld:8,	mov:6},
+    "Goldmary":{	lvl:"3*",	class:"Hero",	    hp:40,	str:17,	mag:2,	dex:18,	spd:20,	def:20,	res:12,	lck:13,	bld:9,	mov:5},
+    "Lindon":{	lvl:"5*",	class:"Sage",           hp:38,	str:8,  mag:19,	dex:21,	spd:19,	def:12,	res:21,	lck:8,	bld:10,	mov:5},
+    "Saphir":{	lvl:"7*",	class:"Warrior",     	hp:51,	str:24,	mag:2,	dex:23,	spd:19,	def:19,	res:9,	lck:15,	bld:15,	mov:5},
+    "Veyle":{	lvl:35,	class:"Fell Child", 	hp:35,	str:20,	mag:26,	dex:24,	spd:23,	def:17,	res:29,	lck:18,	bld:7,	mov:5},
+    "Mauvier":{	lvl:"12*",	class:"Royal Knight",  	hp:51,	str:21,	mag:23,	dex:25,	spd:22,	def:26,	res:24,	lck:16,	bld:12,	mov:6},
+    "Anna":{	lvl:5,	class:"Axe Fighter",	hp:29,	str:10,	mag:2,	dex:9,	spd:7,	def:4,	res:5,	lck:3,	bld:7,	mov:4},
+    "Jean":{	lvl:1,	class:"Martial Monk",	hp:19,	str:4,	mag:5,	dex:10,	spd:7,	def:4,	res:8,	lck:3,	bld:3,	mov:4}
+
+}
+
+export {baseStats}

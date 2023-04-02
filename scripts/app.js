@@ -1,25 +1,22 @@
 "use-strict";
 
 import { classes } from "./data/character-classes.js";
-import { stats } from "./data/individual-growths.js";
+import { characterGrowth } from "./data/individual-growths.js";
 import { classModifiers } from "./data/classModifiers.js";
 import { classMaxStats } from "./data/classMaxStats.js";
 import { characterMaxModifiers } from "./data/characterMaxModifiers.js";
+import { baseStats } from "./data/characterBaseStats.js";
 
 
 
 //calculates effective character growths (indidual growth + class modifiers)
 function calcEffectiveGrowth(name)
 {
-   
-    //get the name of what sent this 
-    //const name = this.name;
     //get select box calling function
     const selectBox = document.querySelector('#'+name);
 
-
     //get the original character stats to modify 
-    const baseStats =  stats[name];
+    const baseGrowths =  characterGrowth[name];
 
     
     //get the selected class index
@@ -37,43 +34,41 @@ function calcEffectiveGrowth(name)
     //apply the stats 
     if(classIndex !=0)
     {
-        document.querySelector("#"+name+"hp").innerText = baseStats.hp+ newClass.hp;
-        document.querySelector("#"+name+"str").innerText = baseStats.str+ newClass.str;
-        document.querySelector("#"+name+"mag").innerText = baseStats.mag+ newClass.mag;
-        document.querySelector("#"+name+"dex").innerText = baseStats.dex+ newClass.dex;
-        document.querySelector("#"+name+"spd").innerText = baseStats.spd+ newClass.spd;
-        document.querySelector("#"+name+"def").innerText = baseStats.def+ newClass.def;
-        document.querySelector("#"+name+"res").innerText = baseStats.res+ newClass.res;
-        document.querySelector("#"+name+"lck").innerText = baseStats.lck+ newClass.lck;
-        document.querySelector("#"+name+"bld").innerText = baseStats.bld+ newClass.bld;
+        document.querySelector("#"+name+"hp").innerText = baseGrowths.hp+ newClass.hp;
+        document.querySelector("#"+name+"str").innerText = baseGrowths.str+ newClass.str;
+        document.querySelector("#"+name+"mag").innerText = baseGrowths.mag+ newClass.mag;
+        document.querySelector("#"+name+"dex").innerText = baseGrowths.dex+ newClass.dex;
+        document.querySelector("#"+name+"spd").innerText = baseGrowths.spd+ newClass.spd;
+        document.querySelector("#"+name+"def").innerText = baseGrowths.def+ newClass.def;
+        document.querySelector("#"+name+"res").innerText = baseGrowths.res+ newClass.res;
+        document.querySelector("#"+name+"lck").innerText = baseGrowths.lck+ newClass.lck;
+        document.querySelector("#"+name+"bld").innerText = baseGrowths.bld+ newClass.bld;
     }else{
-        document.querySelector("#"+name+"hp").innerText = baseStats.hp
-        document.querySelector("#"+name+"str").innerText = baseStats.str;
-        document.querySelector("#"+name+"mag").innerText = baseStats.mag;
-        document.querySelector("#"+name+"dex").innerText = baseStats.dex;
-        document.querySelector("#"+name+"spd").innerText = baseStats.spd;
-        document.querySelector("#"+name+"def").innerText = baseStats.def;
-        document.querySelector("#"+name+"res").innerText = baseStats.res;
-        document.querySelector("#"+name+"lck").innerText = baseStats.lck;
-        document.querySelector("#"+name+"bld").innerText = baseStats.bld;
+        document.querySelector("#"+name+"hp").innerText = baseGrowths.hp
+        document.querySelector("#"+name+"str").innerText = baseGrowths.str;
+        document.querySelector("#"+name+"mag").innerText = baseGrowths.mag;
+        document.querySelector("#"+name+"dex").innerText = baseGrowths.dex;
+        document.querySelector("#"+name+"spd").innerText = baseGrowths.spd;
+        document.querySelector("#"+name+"def").innerText = baseGrowths.def;
+        document.querySelector("#"+name+"res").innerText = baseGrowths.res;
+        document.querySelector("#"+name+"lck").innerText = baseGrowths.lck;
+        document.querySelector("#"+name+"bld").innerText = baseGrowths.bld;
     }
-    
-
-    
+     
 }
-function displayBaseStats(name)
+function displayBaseGrowths(name)
 {
-    const baseStats =  stats[name];
+    const baseGrowths =  characterGrowth[name];
 
-    document.querySelector("#"+name+"hp").innerText = baseStats.hp
-    document.querySelector("#"+name+"str").innerText = baseStats.str;
-    document.querySelector("#"+name+"mag").innerText = baseStats.mag;
-    document.querySelector("#"+name+"dex").innerText = baseStats.dex;
-    document.querySelector("#"+name+"spd").innerText = baseStats.spd;
-    document.querySelector("#"+name+"def").innerText = baseStats.def;
-    document.querySelector("#"+name+"res").innerText = baseStats.res;
-    document.querySelector("#"+name+"lck").innerText = baseStats.lck;
-    document.querySelector("#"+name+"bld").innerText = baseStats.bld;
+    document.querySelector("#"+name+"hp").innerText = baseGrowths.hp
+    document.querySelector("#"+name+"str").innerText = baseGrowths.str;
+    document.querySelector("#"+name+"mag").innerText = baseGrowths.mag;
+    document.querySelector("#"+name+"dex").innerText = baseGrowths.dex;
+    document.querySelector("#"+name+"spd").innerText = baseGrowths.spd;
+    document.querySelector("#"+name+"def").innerText = baseGrowths.def;
+    document.querySelector("#"+name+"res").innerText = baseGrowths.res;
+    document.querySelector("#"+name+"lck").innerText = baseGrowths.lck;
+    document.querySelector("#"+name+"bld").innerText = baseGrowths.bld;
 }
 function displayMaxStats(name)
 {
@@ -112,6 +107,34 @@ function displayMaxStats(name)
     }
     
 
+}
+function displayBaseStats(name){
+
+    const characterBaseStats = baseStats[name];
+
+    //find the name of default class
+    let classname = characterBaseStats.class;
+
+    //classbox of character
+    let classBox = document.querySelector('#'+name);
+
+    //find index of default class in classbox
+    let classIndex = indexMatchingText(classBox,classname);   
+    
+    //setClassBox to display default class 
+    classBox.selectedIndex = classIndex;
+        
+
+    document.querySelector("#"+name+"hp").innerText =characterBaseStats.hp;
+    document.querySelector("#"+name+"str").innerText = characterBaseStats.str;
+    document.querySelector("#"+name+"mag").innerText = characterBaseStats.mag;
+    document.querySelector("#"+name+"dex").innerText = characterBaseStats.dex;
+    document.querySelector("#"+name+"spd").innerText = characterBaseStats.spd;
+    document.querySelector("#"+name+"def").innerText = characterBaseStats.def;
+    document.querySelector("#"+name+"res").innerText = characterBaseStats.res;
+    document.querySelector("#"+name+"lck").innerText = characterBaseStats.lck;
+    document.querySelector("#"+name+"bld").innerText = characterBaseStats.bld;
+    
 }
 
 // put all classes inside form
@@ -277,6 +300,13 @@ function populateDisplay(selectBox)
     max.innerText = "Max Stats";
     selectBox.appendChild(max);
 
+    const base = document.createElement("option");
+    base.value = "Base Stats";
+    base.innerText = "Base Stats";
+    selectBox.appendChild(base);
+
+    
+
 
 }
 
@@ -303,10 +333,13 @@ function decideCalculation()
             calcEffectiveGrowth(name);
             break;
         case 1:
-            displayBaseStats(name);
+            displayBaseGrowths(name);
             break;
         case 2: 
             displayMaxStats(name);
+            break;
+        case 3:
+            displayBaseStats(name);
             break;
     }
         
@@ -334,10 +367,13 @@ function runCalc(classSelect)
             calcEffectiveGrowth(name);
             break;
         case 1:
-            displayBaseStats(name);
+            displayBaseGrowths(name);
             break;
         case 2: 
             displayMaxStats(name);
+            break;
+        case 3:
+            displayBaseStats(name);
             break;
     }
         
@@ -368,7 +404,7 @@ function changeAll()
     const displayIndex = displaySelect.selectedIndex;
 
     //set all the characters to these options 
-    Object.entries(stats).forEach(([ characterName ]) => {
+    Object.entries(characterGrowth).forEach(([ characterName ]) => {
         //get the characters class and display box
         const characterClassSelect = document.querySelector("#"+characterName);
         const characterDisplaySelect = document.querySelector("#display"+characterName);
@@ -389,7 +425,16 @@ function changeAll()
 
 function addSelectAll()
 {
+    
     const tr = document.createElement("tr");
+
+    //character level
+    const lvlTD = document.createElement("td");
+    lvlTD.innerText = "-";
+    lvlTD.id = "lvl";
+    tr.appendChild(lvlTD);
+
+    //name
     const nameTD = document.createElement("td");
     tr.appendChild(nameTD);
     nameTD.innerText = "Change All";
@@ -429,10 +474,19 @@ function addSelectAll()
 
 
 }
-Object.entries(stats).forEach(([ characterName, baseStats ]) => {
+Object.entries(characterGrowth).forEach(([ characterName, baseGrowth ]) => {
 
-    //console.log({characterName, baseStats})
+    
+    
     const tr = document.createElement("tr");
+
+    //character level
+    const lvlTD = document.createElement("td");
+    lvlTD.innerText = baseStats[characterName].lvl;
+    lvlTD.id = characterName+"lvl";
+    tr.appendChild(lvlTD);
+
+    //character name
     const nameTD = document.createElement("td");
     tr.appendChild(nameTD)
     nameTD.innerText = characterName;
@@ -472,55 +526,55 @@ Object.entries(stats).forEach(([ characterName, baseStats ]) => {
     //add the base stats
     //hp
     const hpTD = document.createElement("td");
-    hpTD.innerText = baseStats.hp;
+    hpTD.innerText = baseGrowth.hp;
     hpTD.id = characterName+"hp";
     tr.appendChild(hpTD);
 
     //str
     const strTD = document.createElement("td");
-    strTD.innerText = baseStats.str;
+    strTD.innerText = baseGrowth.str;
     strTD.id = characterName+"str";
     tr.appendChild(strTD);
 
     //mag
     const magTD = document.createElement("td");
-    magTD.innerText = baseStats.mag;
+    magTD.innerText = baseGrowth.mag;
     magTD.id = characterName+"mag";
     tr.appendChild(magTD);
 
     //dex
     const dexTD = document.createElement("td");
-    dexTD.innerText = baseStats.dex;
+    dexTD.innerText = baseGrowth.dex;
     dexTD.id = characterName+"dex";
     tr.appendChild(dexTD);
 
     //spd
     const spdTD = document.createElement("td");
-    spdTD.innerText = baseStats.spd;
+    spdTD.innerText = baseGrowth.spd;
     spdTD.id =characterName+ "spd";
     tr.appendChild(spdTD);
 
     //def
     const defTD = document.createElement("td");
-    defTD.innerText = baseStats.def;
+    defTD.innerText = baseGrowth.def;
     defTD.id = characterName+"def";
     tr.appendChild(defTD);
 
     //res 
     const resTD = document.createElement("td");
-    resTD.innerText = baseStats.res;
+    resTD.innerText = baseGrowth.res;
     resTD.id = characterName+"res";
     tr.appendChild(resTD);
 
     //lck
     const lckTD = document.createElement("td");
-    lckTD.innerText = baseStats.lck;
+    lckTD.innerText = baseGrowth.lck;
     lckTD.id = characterName+"lck";
     tr.appendChild(lckTD);
 
     //bld 
     const bldTD = document.createElement("td");
-    bldTD.innerText = baseStats.bld;
+    bldTD.innerText = baseGrowth.bld;
     bldTD.id = characterName+"bld";
     tr.appendChild(bldTD);
 

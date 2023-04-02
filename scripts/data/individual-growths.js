@@ -1,4 +1,4 @@
-const stats = 
+const characterGrowth = 
 {
     "Alear": { hp: 60, str: 35, mag: 20, dex: 45, spd: 50, def: 40, res: 25, lck: 25, bld: 5 },
     "Vander": { hp: 60, str: 25, mag: 10, dex: 25, spd: 35, def: 35, res: 20, lck: 10, bld: 5 },
@@ -40,4 +40,4 @@ const stats =
 };
 
 
-export { stats } 
+export { characterGrowth } 
