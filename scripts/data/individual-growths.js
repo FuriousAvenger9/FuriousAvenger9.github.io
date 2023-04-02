@@ -18,7 +18,7 @@ const stats =
     "Amber": { hp: 65, str: 45, mag: 0, dex: 25, spd: 30, def: 35, res: 5, lck: 35, bld: 15 },
     "Jade": { hp: 55, str: 35, mag: 25, dex: 35, spd: 30, def: 40, res: 30, lck: 20, bld: 10 },
     "Ivy": { hp: 55, str: 25, mag: 30, dex: 25, spd: 40, def: 30, res: 35, lck: 15, bld: 10 },
-    "Kagetus": { hp: 60, str: 30, mag: 15, dex: 50, spd: 50, def: 40, res: 25, lck: 40, bld: 10 },
+    "Kagetsu": { hp: 60, str: 30, mag: 15, dex: 50, spd: 50, def: 40, res: 25, lck: 40, bld: 10 },
     "Zelkov": { hp: 65, str: 35, mag: 15, dex: 40, spd: 35, def: 35, res: 15, lck: 25, bld: 10 },
     "Fogado": { hp: 60, str: 30, mag: 25, dex: 30, spd: 55, def: 30, res: 35, lck: 25, bld: 10 },
     "Pandreo": { hp: 60, str: 5, mag: 30, dex: 45, spd: 45, def: 15, res: 55, lck: 30, bld: 15 },

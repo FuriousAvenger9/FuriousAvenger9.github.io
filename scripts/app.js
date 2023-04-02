@@ -311,8 +311,124 @@ function decideCalculation()
     }
         
 }
+//function I can call to force calculation of stats
+function runCalc(classSelect)
+{
+    //get name of select box calling this 
+    let name = classSelect.name;
+    //if the display select called this message we need to modify name so we only pass the characters name
+    if(name.includes("display"))
+    {
+        name= name.slice(7);
+    }
+
+    //get associated display box
+    let displayBox = document.querySelector("#display"+name);
+
+    //get index of display box 
+    let displayIndex = displayBox.selectedIndex;
+
+    switch(displayIndex)
+    {
+        case 0: 
+            calcEffectiveGrowth(name);
+            break;
+        case 1:
+            displayBaseStats(name);
+            break;
+        case 2: 
+            displayMaxStats(name);
+            break;
+    }
+        
+}
+//function to find index of option in select box
+function indexMatchingText(ele, text) {
+    for (var i=0; i<ele.length;i++) {
+        if (ele[i].childNodes[0].nodeValue === text){
+            return i;
+        }
+    }
+    return undefined;
+}
+
 
 const tbody = document.querySelector("#mainTable tbody");
+window.onload=addSelectAll;
+
+function changeAll()
+{
+    //get the class select box 
+    const classSelect = document.querySelector("#ChangeAll");
+    //get the display box 
+    const displaySelect =document.querySelector("#displayChangeAll");
+
+    //get both selected indexs 
+    const classValue = classSelect[classSelect.selectedIndex].value;
+    const displayIndex = displaySelect.selectedIndex;
+
+    //set all the characters to these options 
+    Object.entries(stats).forEach(([ characterName ]) => {
+        //get the characters class and display box
+        const characterClassSelect = document.querySelector("#"+characterName);
+        const characterDisplaySelect = document.querySelector("#display"+characterName);
+
+
+        let classIndex = indexMatchingText(characterClassSelect, classValue);
+        //set the indexes to be equal 
+        characterClassSelect.selectedIndex = classIndex;
+        characterDisplaySelect.selectedIndex = displayIndex;
+
+        runCalc(characterClassSelect);
+
+
+    })
+
+    
+}
+
+function addSelectAll()
+{
+    const tr = document.createElement("tr");
+    const nameTD = document.createElement("td");
+    tr.appendChild(nameTD);
+    nameTD.innerText = "Change All";
+
+    //create class select 
+    const classSelect = document.createElement("select");
+    classSelect.name = "ChangeAll"; 
+    classSelect.id = "ChangeAll"; 
+    const selectOption = document.createElement("option");
+    selectOption.value = "Select Class";
+    selectOption.innerText = "Select Class";
+    classSelect.appendChild(selectOption);
+    populateClasses(classSelect);
+    classSelect.addEventListener("change", changeAll);
+
+    //create td to append to
+    const tdClassSelect = document.createElement("td");
+    tdClassSelect.appendChild(classSelect);
+
+    //create display select
+    const displaySelect = document.createElement("select");
+    displaySelect.name = "displayChangeAll"; 
+    displaySelect.id = "displayChangeAll"; 
+    displaySelect.value = "indivdual growth rates";
+    populateDisplay(displaySelect);
+    displaySelect.addEventListener("change", changeAll);
+    //create td to append to
+    const tdDisplaySelect = document.createElement("td");
+    tdDisplaySelect.appendChild(displaySelect);
+    
+    //add these select options to the table
+    tr.appendChild(tdClassSelect);
+    tr.appendChild(tdDisplaySelect);
+
+    //append the row to the tbody
+    tbody.insertBefore(tr,tbody.childNodes[1]);
+
+
+}
 Object.entries(stats).forEach(([ characterName, baseStats ]) => {
 
     //console.log({characterName, baseStats})
@@ -411,7 +527,7 @@ Object.entries(stats).forEach(([ characterName, baseStats ]) => {
 
 
     //append the row to the tbody
-    tbody.appendChild(tr)
+    tbody.appendChild(tr);
     
 })
 
