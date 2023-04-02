@@ -1,7 +1,6 @@
 
 const classes = 
 [
-    "Select Class",
     "Dragon Child", 
     "Divine Dragon",
     "Fell Child",
@@ -20,14 +19,18 @@ const classes =
     "Picket",
     "Sentinel",
     "Melusine",
+    "Dancer",
+    "Enchanter",
+    //start of generic classes 
+    "Select Class",
     "Sword Fighter",
     "Swordmaster",
     "Hero",
     "Lance Fighter",
-    "Helberdier",
+    "Halberdier",
     "Royal Knight",
     "Axe Fighter",
-    "Beserker",
+    "Berserker",
     "Warrior",
     "Archer",
     "Sniper",
@@ -36,7 +39,7 @@ const classes =
     "Lance Armor",
     "Axe Armor",
     "General",
-    "General Knight",
+    "Great Knight",
     "Sword Cavalier",
     "Lance Cavalier",
     "Axe Cavalier",
@@ -45,17 +48,15 @@ const classes =
     "Mage",
     "Sage",
     "Mage Knight",
-    "Martial Knight",
-    "Marital Master",
+    "Martial Monk",
+    "Martial Master",
     "High Priest",
     "Sword Flier",
     "Lance Flier",
     "Axe Flier",
     "Griffin Knight",
-    "Wyvernm Knight",
-    "Thief",
-    "Dancer",
-    "Enchanter"
+    "Wyvern Knight",
+    "Thief"
 ]
 
 export { classes } 
