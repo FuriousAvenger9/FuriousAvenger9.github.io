@@ -1,7 +1,7 @@
 const baseStats =
 {
     "Alear":{	lvl:1,	class:"Dragon Child",	hp:22,	str:6,  mag:0,	dex:5,	spd:7,	def:5,	res:3,	lck:5,	bld:4,	mov:4},
-    "Vander":{	lvl:"1*",	class:"Paladin",	    hp:40,	str:11,	mag:5,	dex:10,	spd:8,	def:10,	res:8,	lck:6,	bld:8,	mov:6},
+    "Vander":{	lvl:"1*",	class:"Paladin",	hp:40,	str:11,	mag:5,	dex:10,	spd:8,	def:10,	res:8,	lck:6,	bld:8,	mov:6},
     "Clanne":{	lvl:1,	class:"Mage",	        hp:19,	str:1,  mag:8,	dex:11,	spd:9,	def:4,	res:7,	lck:4,	bld:4,	mov:4},
     "Framme":{	lvl:1,	class:"Martial Monk",	hp:18,	str:3,  mag:5,	dex:8,	spd:7,	def:4,	res:8,	lck:5,	bld:3,	mov:4},
     "Alfred":{	lvl:5,	class:"Noble",      	hp:27,	str:9,  mag:2,	dex:10,	spd:6,	def:8,	res:5,	lck:8,	bld:6,	mov:5},
