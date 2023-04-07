@@ -15,12 +15,19 @@ table{
 }
 
 footer{
+    text-align: center;
     height: 10%;
 }
 header h1{
     color:white;
     text-align: center;
 }
+.center{
+    text-align: center;
+}
+
+
+
 
 th,td{
     padding:10px;
